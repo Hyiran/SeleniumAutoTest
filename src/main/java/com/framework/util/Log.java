@@ -13,8 +13,7 @@ public class Log {
     public Log() {
         File directory = new File(Constants.LogXML);
         try {
-            directory.getCanonicalPath();
-
+            //directory.getCanonicalPath();
             System.out.println("Load Config fileName" + directory.getCanonicalPath());
             DOMConfigurator.configure(directory.getCanonicalPath());
         } catch (IOException e) {

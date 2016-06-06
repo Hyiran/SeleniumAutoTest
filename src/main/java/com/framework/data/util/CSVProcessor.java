@@ -35,7 +35,9 @@ public class CSVProcessor
       es.put(e.name, e);
     }
     try {
-      reader.close();
+      if (reader != null) {
+        reader.close();
+      }
     }
     catch (IOException e) {
       e.printStackTrace();

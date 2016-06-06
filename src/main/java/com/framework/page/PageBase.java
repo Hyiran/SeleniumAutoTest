@@ -1,9 +1,10 @@
-package com.framework.webdriver;
+package com.framework.page;
 
+import com.framework.webdriver.RunTest;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,13 +13,17 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
-public class WebDriverPlus extends EventFiringWebDriver {
-    public static final String PFILEPATH = "/test-output/screenshot";
+/**
+ * Created by caijianmin on 2016/6/6.
+ */
+public abstract class PageBase implements IPage {
 
-    public WebDriverPlus(WebDriver driver) {
-        super(driver);
-    }
+    WebDriver driver= RunTest.getDriver();
+
+    @Override
+    public abstract void init(HashMap<String, Object> paramHashMap) ;
 
     /**
      * 截取整个浏览器页面
@@ -29,7 +34,7 @@ public class WebDriverPlus extends EventFiringWebDriver {
         if (!file.exists()) {
             file.mkdir();
         }
-        File screenShotFile =  DriverBase.driver.getScreenshotAs(OutputType.FILE);
+        File screenShotFile =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenShotFile, new File(path + "/" + name + ".jpg"));
         } catch (IOException e) {

@@ -3,15 +3,13 @@ package com.framework.webdriver;
 import com.framework.data.util.Element;
 import com.framework.listener.JDListenerAdapter;
 import com.google.common.base.Function;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +17,26 @@ import java.util.concurrent.TimeUnit;
 public class ElementBase
 {
   private Element element = null;
-  private WebDriverPlus driver = DriverBase.driver;
+  private WebDriver driver = RunTest.getDriver();
+  private Long implicitlyWait=Long.parseLong(System.getProperty("implicitlyWait"));
+  private Long webDriverWait=Long.parseLong(System.getProperty("webDriverWait"));
+
+  public static void pressKey(int key) {
+    try {
+      Robot rob = new Robot();
+      rob.keyPress(key);
+      rob.keyRelease(key);
+    } catch (AWTException localAWTException) {
+    }
+  }
+
+  public static void delay(int time) {
+    try {
+      Thread.sleep(time * 1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 
   public void click()
   {
@@ -120,36 +137,36 @@ public class ElementBase
     {
       this.driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
       getWebElement();
-      this.driver.manage().timeouts().implicitlyWait(DriverBase.implicitlyWait, TimeUnit.SECONDS);
+      this.driver.manage().timeouts().implicitlyWait(implicitlyWait, TimeUnit.SECONDS);
       return true;
     } catch (NoSuchElementException e) {
-      this.driver.manage().timeouts().implicitlyWait(DriverBase.implicitlyWait, TimeUnit.SECONDS);
+      this.driver.manage().timeouts().implicitlyWait(implicitlyWait, TimeUnit.SECONDS);
     }return false;
   }
 
   public void waitForElementPresent()
   {
     int time = 5;
-    for (int i = 1; i < Math.ceil(DriverBase.webDriverWait / 10); i++) {
-      DriverBase.delay(time);
-      DriverBase.pressKey(27);
+    for (int i = 1; i < Math.ceil(webDriverWait / 10); i++) {
+      delay(time);
+      pressKey(27);
       if (isElementPresent(3)) {
         return;
       }
-      DriverBase.pressKey(116);
+      pressKey(116);
       time *= 2;
     }
   }
 
   public void toBePresent()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(ExpectedConditions.presenceOfElementLocated(getBy()));
+    new WebDriverWait(this.driver,webDriverWait).until(ExpectedConditions.presenceOfElementLocated(getBy()));
   }
 
 
 public void toBeNotPresent()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>(){
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>(){
       public Boolean apply(WebDriver driver) {
         return Boolean.valueOf(!ElementBase.this.isElementPresent(2));
       }
@@ -163,12 +180,12 @@ public void toBeNotPresent()
 
   public void toBeVisible()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(ExpectedConditions.visibilityOfElementLocated(getBy()));
+    new WebDriverWait(this.driver, webDriverWait).until(ExpectedConditions.visibilityOfElementLocated(getBy()));
   }
 
   public void toBeInvisible()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(ExpectedConditions.invisibilityOfElementLocated(getBy()));
+    new WebDriverWait(this.driver, webDriverWait).until(ExpectedConditions.invisibilityOfElementLocated(getBy()));
   }
 
   public boolean isEnabled()
@@ -178,12 +195,12 @@ public void toBeNotPresent()
 
   public void toBeEnable()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(ExpectedConditions.elementToBeClickable(getBy()));
+    new WebDriverWait(this.driver, webDriverWait).until(ExpectedConditions.elementToBeClickable(getBy()));
   }
 
   public void toBeDisable()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         return !ElementBase.this.getWebElement().isEnabled();
       }
@@ -192,7 +209,7 @@ public void toBeNotPresent()
 
   public void textToBe(final String text)
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         try {
           return ElementBase.this.getText().equals(text);
@@ -206,7 +223,7 @@ public void toBeNotPresent()
 
   public void textToBeNotEmpty()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         try {
           if (ElementBase.this.getText().length() != 0) return true;
@@ -220,7 +237,7 @@ public void toBeNotPresent()
 
   public void textContains(final String text)
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         try {
           return ElementBase.this.getText().contains(text);
@@ -234,7 +251,7 @@ public void toBeNotPresent()
 
   public void valueToBe(final String value)
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         return ElementBase.this.getAttribute("value").equals(value);
       }
@@ -243,7 +260,7 @@ public void toBeNotPresent()
 
   public void valueToBeNotEmpty()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         if (ElementBase.this.getAttribute("value").length() != 0) return true; return false;
       }
@@ -252,7 +269,7 @@ public void toBeNotPresent()
 
   public void valueContains( final String value)
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         return ElementBase.this.getAttribute("value").contains(value);
       }
@@ -266,17 +283,17 @@ public void toBeNotPresent()
 
   public void toBeSelected()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(ExpectedConditions.elementToBeSelected(getBy()));
+    new WebDriverWait(this.driver, webDriverWait).until(ExpectedConditions.elementToBeSelected(getBy()));
   }
 
   public void toBeNotSelected()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(ExpectedConditions.elementSelectionStateToBe(getBy(), false));
+    new WebDriverWait(this.driver, webDriverWait).until(ExpectedConditions.elementSelectionStateToBe(getBy(), false));
   }
 
   public void toBeActive()
   {
-    new WebDriverWait(this.driver, DriverBase.webDriverWait).until(new Function<WebDriver,Boolean>() {
+    new WebDriverWait(this.driver, webDriverWait).until(new Function<WebDriver,Boolean>() {
       public Boolean apply(WebDriver driver) {
         return driver.switchTo().activeElement().getLocation().equals(ElementBase.this.getWebElement().getLocation());
       }
@@ -293,7 +310,7 @@ public void toBeNotPresent()
     try
     {
       WebElement e = getWebElement();
-      this.driver.executeScript(script, new Object[] { e });
+      ((JavascriptExecutor)driver).executeScript(script, new Object[]{e});
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -339,11 +356,11 @@ public void toBeNotPresent()
     try
     {
       WebElement e = this.driver.findElement(getBy(locator, type));
-      this.driver.executeScript(
-        "arguments[0].style.border = '4px solid red'", new Object[] { e });
+      ((JavascriptExecutor)driver).executeScript(
+              "arguments[0].style.border = '4px solid red'", new Object[]{e});
       Thread.sleep(100L);
-      this.driver.executeScript(
-        "arguments[0].style.border = 'none'", new Object[] { e });
+      ((JavascriptExecutor)driver).executeScript(
+              "arguments[0].style.border = 'none'", new Object[]{e});
     } catch (NoSuchElementException e) {
       JDListenerAdapter.locator = null;
       return;
@@ -360,8 +377,8 @@ public void toBeNotPresent()
     try
     {
       WebElement e = this.driver.findElement(getBy(locator, type));
-      this.driver.executeScript(
-        "arguments[0].style.border = '4px solid red'", new Object[] { e });
+      ((JavascriptExecutor)driver).executeScript(
+              "arguments[0].style.border = '4px solid red'", new Object[]{e});
     }
     catch (Exception localException)
     {
@@ -544,7 +561,7 @@ public void toBeNotPresent()
       else {
         column--;
       }
-      return (WebElement)e.get(column);
+      return e.get(column);
     }
     return null;
   }

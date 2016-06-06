@@ -2,6 +2,7 @@ package com.framework.driver;
 
 import com.framework.util.Config;
 import com.framework.util.Constants;
+import com.framework.webdriver.DriverBase;
 import com.machinepublishers.jbrowserdriver.JBrowserDriver;
 import com.machinepublishers.jbrowserdriver.Settings;
 import org.openqa.selenium.Dimension;

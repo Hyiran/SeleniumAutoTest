@@ -24,7 +24,7 @@ public class MongoUtil
 public MongoUtil(String key)
   {
     try {
-      this.mongo = new Mongo(System.getProperty("DB." + key + ".host"), Integer.valueOf(System.getProperty("DB." + key + ".port")).intValue());
+      this.mongo = new Mongo(System.getProperty("DB." + key + ".host"), Integer.valueOf(System.getProperty("DB." + key + ".port")));
 
       this.db = this.mongo.getDB(System.getProperty("DB." + key + ".database"));
       if (!this.db.authenticate(System.getProperty("DB." + key + ".username"), System.getProperty("DB." + key + ".password").toCharArray()));
