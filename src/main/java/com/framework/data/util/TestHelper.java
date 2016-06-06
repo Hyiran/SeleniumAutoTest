@@ -1,5 +1,7 @@
 package com.framework.data.util;
 
+import com.framework.page.Page;
+
 import java.io.File;
 import java.util.HashMap;
 

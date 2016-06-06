@@ -7,6 +7,7 @@ import com.framework.browser.Browser;
 import com.framework.browser.ChromeBorowser;
 import com.framework.browser.FirefoxBrowser;
 import com.framework.browser.IEBrowser;
+import com.framework.data.util.TestHelper;
 import com.framework.util.Config;
 import com.framework.util.Constants;
 import com.framework.util.InitProperties;
@@ -25,6 +26,8 @@ public class RunTest extends DriverBase {
     public static Logger log = Log.getInstance();
     private static DataUtil data = DataUtil.getInstance();
     private static WebDriver driver = start();
+    public static TestHelper helper= new TestHelper();
+
     public static Config getConfig() {
         return config;
     }

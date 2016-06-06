@@ -1,4 +1,4 @@
-package com.framework.data.util;
+package com.framework.page;
 
 import java.util.HashMap;
 

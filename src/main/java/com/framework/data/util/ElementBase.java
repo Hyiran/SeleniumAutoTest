@@ -1,7 +1,7 @@
-package com.framework.webdriver;
+package com.framework.data.util;
 
-import com.framework.data.util.Element;
 import com.framework.listener.JDListenerAdapter;
+import com.framework.webdriver.RunTest;
 import com.google.common.base.Function;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;

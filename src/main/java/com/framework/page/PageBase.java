@@ -18,7 +18,7 @@ import java.util.HashMap;
 /**
  * Created by caijianmin on 2016/6/6.
  */
-public abstract class PageBase implements IPage {
+public abstract class PageBase implements Page {
 
     WebDriver driver= RunTest.getDriver();
 

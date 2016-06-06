@@ -1,6 +1,5 @@
 package com.framework.data.util;
 
-import com.framework.webdriver.ElementBase;
 import org.jsefa.csv.annotation.CsvDataType;
 import org.jsefa.csv.annotation.CsvField;
 
