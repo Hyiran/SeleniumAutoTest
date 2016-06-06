@@ -330,10 +330,10 @@ public void toBeNotPresent()
         len=text.length();
       }
       if (isMatcheMessy(text.substring(0,len))) {
-        Logger.error("文本出现乱码"+text+":"+driver.getCurrentUrl()+element.locator);
+        Logger.error("文本出现乱码"+text+":"+browser.getCurrentUrl()+element.locator);
       }
     }else {
-      Logger.error("文本内容为空"+text+":"+driver.getCurrentUrl()+element.locator);
+      Logger.error("文本内容为空"+text+":"+browser.getCurrentUrl()+element.locator);
     }*/
     return text;
   }

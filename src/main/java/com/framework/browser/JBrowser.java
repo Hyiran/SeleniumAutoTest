@@ -1,4 +1,4 @@
-package com.framework.driver;
+package com.framework.browser;
 
 import com.framework.util.Config;
 import com.framework.util.Constants;

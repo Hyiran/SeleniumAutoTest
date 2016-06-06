@@ -9,9 +9,9 @@ public enum DBType
   MYSQL3("com.mysql.jdbc.Driver"), MYSQL4("com.mysql.jdbc.Driver"), MYSQL5("com.mysql.jdbc.Driver"), 
   MYSQL(MYSQL5.getDBType()), 
 
-  ORCALE8("oracle.jdbc.driver.OracleDriver"), ORCALE9("oracle.jdbc.driver.OracleDriver"), 
-  ORCALE10("oracle.jdbc.driver.OracleDriver"), 
-  ORCALE11("oracle.jdbc.driver.OracleDriver"), 
+  ORCALE8("oracle.jdbc.browser.OracleDriver"), ORCALE9("oracle.jdbc.browser.OracleDriver"),
+  ORCALE10("oracle.jdbc.browser.OracleDriver"),
+  ORCALE11("oracle.jdbc.browser.OracleDriver"),
   ORCALE(ORCALE11.getDBType());
 
   private String db;

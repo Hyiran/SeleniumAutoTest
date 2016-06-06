@@ -14,16 +14,16 @@ public class Constants {
     public static String PhantomeBrowserName = "phantomjs.exe";
 
     public static String IEDriverName = "IEDriverServer.exe";
-    public static String IEDriverPath = "c:\\autoSVN\\driver\\IEDriverServer.exe";
-    public static String IEProperty = "webdriver.ie.driver";
+    public static String IEDriverPath = "c:\\autoSVN\\browser\\IEDriverServer.exe";
+    public static String IEProperty = "webdriver.ie.browser";
     public static int TimeOut = 3;
 
     public static String FirefoxProperty = "webdriver.firefox.bin";
     public static String FirefoxPath = "D:\\worksoft\\Mozilla Firefox\\firefox.exe";
 
     public static String ChromeDriverName = "chromedriver.exe";
-    public static String ChromeProperty = "webdriver.chrome.driver";
-    public static String ChromeDriverPath = "c:\\autoSVN\\driver\\chromedriver.exe";
+    public static String ChromeProperty = "webdriver.chrome.browser";
+    public static String ChromeDriverPath = "c:\\autoSVN\\browser\\chromedriver.exe";
 
     public static String LogXML = "./config/log4j.xml";
     public static String config = "./config/config.properties";

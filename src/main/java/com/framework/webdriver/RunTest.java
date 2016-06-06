@@ -3,10 +3,10 @@ package com.framework.webdriver;
 
 import com.framework.data.util.DataUtil;
 import com.framework.data.util.ProccessHepler;
-import com.framework.driver.Browser;
-import com.framework.driver.ChromeBorowser;
-import com.framework.driver.FirefoxBrowser;
-import com.framework.driver.IEBrowser;
+import com.framework.browser.Browser;
+import com.framework.browser.ChromeBorowser;
+import com.framework.browser.FirefoxBrowser;
+import com.framework.browser.IEBrowser;
 import com.framework.util.Config;
 import com.framework.util.Constants;
 import com.framework.util.InitProperties;
