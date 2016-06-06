@@ -26,7 +26,7 @@ public class Constants {
     public static String ChromeDriverPath = "c:\\autoSVN\\browser\\chromedriver.exe";
 
     public static String LogXML = "./config/log4j.xml";
-    public static String config = "./config/config.properties";
+    public static String config = "./resources/config/config.properties";
     public static String Out_Dir = "./config/report";
     public static String DUP_MARK = "@";
 

@@ -9,7 +9,7 @@ import java.util.*;
 public class InitProperties
 {
   public static final boolean MATRIXFLAG = System.getProperty("user.dir").contains("C:\\Matrix\\STAF\\work");
-  public static final String PFILEPATH = "/resources/config/CONFIG.properties";
+  public static final String PFILEPATH = Constants.config;
   public static final String TIMEKEY = "TestTimeStamp";
   public static final String MILITIMEKEY = "TestMiliTimeStamp";
   private InputStreamReader fn = null;
