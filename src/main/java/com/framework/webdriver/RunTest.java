@@ -15,6 +15,7 @@ import com.framework.util.Log;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class RunTest extends DriverBase {
     public static Config config = new Config(Constants.config);
     public static Logger log = Log.getInstance();
     private static DataUtil data = DataUtil.getInstance();
-    private static WebDriver driver = start();
+    public static WebDriver driver = start();
     public static TestHelper helper= new TestHelper();
 
     public static Config getConfig() {
@@ -115,6 +116,11 @@ public class RunTest extends DriverBase {
         } else if (Constants.IE.equalsIgnoreCase(config.get("BROWSER"))) {
             ProccessHepler.CloseProcess(Constants.IEDriverName);
         }
+
+    }
+
+    @BeforeClass
+    public void initPage(){
 
     }
 

@@ -21,18 +21,20 @@ public class CSVProcessor
     try {
       reader = new InputStreamReader(new FileInputStream(inFileName), encoding);
     }
-    catch (FileNotFoundException e1)
+    catch (FileNotFoundException | UnsupportedEncodingException e1)
     {
       e1.printStackTrace();
     }
-    catch (UnsupportedEncodingException e) {
+    HashMap<String, Object> es = null;
+    try {
+      d.open(reader);
+      es = new HashMap<String, Object>();
+      while (d.hasNext()) {
+        Element e = d.next();
+        es.put(e.name, e);
+      }
+    } catch (Exception e) {
       e.printStackTrace();
-    }
-    d.open(reader);
-    HashMap<String, Object> es = new HashMap<String, Object>();
-    while (d.hasNext()) {
-      Element e = (Element)d.next();
-      es.put(e.name, e);
     }
     try {
       if (reader != null) {

@@ -19,15 +19,15 @@ public class Constants {
     public static int TimeOut = 3;
 
     public static String FirefoxProperty = "webdriver.firefox.bin";
-    public static String FirefoxPath = "D:\\worksoft\\Mozilla Firefox\\firefox.exe";
+    public static String FirefoxPath = "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe";
 
     public static String ChromeDriverName = "chromedriver.exe";
     public static String ChromeProperty = "webdriver.chrome.browser";
     public static String ChromeDriverPath = "c:\\autoSVN\\browser\\chromedriver.exe";
 
-    public static String LogXML = "./config/log4j.xml";
+    public static String LogXML = "./resources/config/log4j.xml";
     public static String config = "./resources/config/config.properties";
-    public static String Out_Dir = "./config/report";
+    public static String Out_Dir = "./resources/config/report";
     public static String DUP_MARK = "@";
 
     public static String Semicolon = ";";
