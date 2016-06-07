@@ -59,19 +59,19 @@ public class XmlDataProvider extends DataProviderImpl
   {
     Node type = node.getAttributes().getNamedItem("type");
     if (type == null) {
-      return node.getAttributes().getNamedItem("value").getNodeValue().toString();
+      return node.getAttributes().getNamedItem("value").getNodeValue();
     }
     if (type.getNodeValue().equalsIgnoreCase("int")) {
-      return Integer.valueOf(node.getAttributes().getNamedItem("value").getNodeValue().toString());
+      return Integer.valueOf(node.getAttributes().getNamedItem("value").getNodeValue());
     }
     if (type.getNodeValue().equalsIgnoreCase("double")) {
-      return Double.valueOf(node.getAttributes().getNamedItem("value").getNodeValue().toString());
+      return Double.valueOf(node.getAttributes().getNamedItem("value").getNodeValue());
     }
     if (type.getNodeValue().equalsIgnoreCase("array")) {
       String spiltString = ",";
       Node spilt = node.getAttributes().getNamedItem("spilt");
-      if (spilt != null) spiltString = spilt.getNodeValue().toString();
-      return node.getAttributes().getNamedItem("value").getNodeValue().toString().split(spiltString);
+      if (spilt != null) spiltString = spilt.getNodeValue();
+      return node.getAttributes().getNamedItem("value").getNodeValue().split(spiltString);
     }
     return node.getAttributes().getNamedItem("value").getNodeValue();
   }
@@ -84,13 +84,7 @@ public class XmlDataProvider extends DataProviderImpl
       Document doc = dombuilder.parse(is);
       Element cases = doc.getDocumentElement();
       return cases.getChildNodes();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (ParserConfigurationException e) {
-      e.printStackTrace();
-    } catch (SAXException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return null;

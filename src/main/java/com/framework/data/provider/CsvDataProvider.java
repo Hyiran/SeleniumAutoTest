@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvDataProvider extends DataProviderImpl
-{
+public class CsvDataProvider extends DataProviderImpl {
+
   public final char SEPARATE = '|';
   public final String ANNOTATION = "#";
 
