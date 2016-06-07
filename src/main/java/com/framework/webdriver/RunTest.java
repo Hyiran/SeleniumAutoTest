@@ -120,6 +120,11 @@ public class RunTest extends DriverBase {
     }
 
     @BeforeClass
+    public void beforeClass(){
+        initPage();
+
+    }
+
     public void initPage(){
 
     }
