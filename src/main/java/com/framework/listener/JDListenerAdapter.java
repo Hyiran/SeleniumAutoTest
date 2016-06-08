@@ -7,15 +7,19 @@ import com.framework.util.Constants;
 import com.framework.util.Log;
 import com.framework.webdriver.RunTest;
 import org.apache.log4j.Logger;
-import org.testng.*;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * @author Caijianmin
+ * JD TestFrameWork Listener Adapter
+ *
+ * @author Nihuaiqing
  */
-public class JDListenerAdapter extends TestListenerAdapter implements IExecutionListener, ISuiteListener, IInvokedMethodListener {
+public class JDListenerAdapter extends TestListenerAdapter  {
     public static String locator = null;
     public static String type = null;
     public static Config config = new Config(Constants.config);
@@ -25,14 +29,14 @@ public class JDListenerAdapter extends TestListenerAdapter implements IExecution
     @Override
     public void onStart(ITestContext testContext) {
         super.onStart(testContext);
-        log.info(String.format("测试集【%s】执行开始 ", testContext.getName()));
+        System.out.println(String.format("测试集【%s】执行开始 ", testContext.getName()));
     }
 
     //测试集结束监听
     @Override
     public void onFinish(ITestContext testContext) {
         super.onFinish(testContext);
-        log.info(String.format("测试集【%s】执行结束", testContext.getName()));
+        System.out.println(String.format("测试集【%s】执行结束", testContext.getName()));
     }
 
     @Override
@@ -43,7 +47,6 @@ public class JDListenerAdapter extends TestListenerAdapter implements IExecution
         log.error("测试方法 【" + tr.getName() + "】 执行失败");
         String imgName;
         if (RunTest.getDriver() != null) {
-            log.info("请参考：");
             if (USESCREENSHOT) {
                 //截图
                 SimpleDateFormat df = new SimpleDateFormat("MMddHHmmss");
@@ -61,51 +64,17 @@ public class JDListenerAdapter extends TestListenerAdapter implements IExecution
     @Override
     public void onTestSkipped(ITestResult tr) {
         super.onTestSkipped(tr);
-        log.info("=======================================================");
-        log.info("测试方法 【" + tr.getName() + "】 执行跳过");
-        log.info("=======================================================");
+        System.out.println("=======================================================");
+        System.out.println("测试方法 【" + tr.getName() + "】 执行跳过");
+        System.out.println("=======================================================");
     }
 
     @Override
     public void onTestSuccess(ITestResult tr) {
         super.onTestSuccess(tr);
-        log.info("=======================================================");
-        log.info("测试方法 【" + tr.getName() + "】 执行成功！");
-        log.info("=======================================================");
-    }
-
-
-    public void onExecutionStart() {
-        weclome();
-        log.info("=======================================================");
-        log.info("                    测试框架执行开始");
-        log.info("=======================================================");
-    }
-
-    public void onExecutionFinish() {
-        log.info("=======================================================");
-        log.info("                    测试框架执行结束");
-        log.info("=======================================================");
-    }
-
-    public void onStart(ISuite suite) {
-        log.info("测试套件【" + suite.getName() + "】执行开始");
-    }
-
-    public void onFinish(ISuite suite) {
-        log.info("测试套件【" + suite.getName() + "】执行结束");
-    }
-
-    private void weclome() {
-        log.info(String.format("Starting Test Framework", new Object[0]));
-    }
-
-    public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        log.info("测试方法【" + method.getTestMethod().getMethodName() + "】执行开始");
-    }
-
-    public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        log.info("测试方法【" + method.getTestMethod().getMethodName() + "】执行结束");
+        System.out.println("=======================================================");
+        System.out.println("测试方法 【" + tr.getName() + "】 执行成功！");
+        System.out.println("=======================================================");
     }
 
 }

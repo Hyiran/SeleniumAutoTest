@@ -23,7 +23,7 @@ public class RunTest extends DriverBase {
     public static Config config = new Config(Constants.config);
     public static Logger log = Log.getInstance();
     private static DataUtil data = DataUtil.getInstance();
-    private static WebDriver driver = start();
+    protected static WebDriver driver = start();
     public static TestHelper helper = new TestHelper();
 
     public static Config getConfig() {
@@ -36,7 +36,7 @@ public class RunTest extends DriverBase {
 
     @BeforeSuite//启动浏览器
     private static WebDriver start() {
-        log.info("初始化系统参数配置");
+        System.out.println("初始化系统参数配置");
         new InitProperties();//初始化系统配置文件
         if (driver == null) {
             if (Constants.CHROME.equalsIgnoreCase(config.get("BROWSER")))
@@ -103,7 +103,7 @@ public class RunTest extends DriverBase {
         if ((browser != null) && (config.get("BROWSER") != null)) {
             driver = browser.start();
         }
-        log.info("浏览器启动成功");
+        System.out.println("浏览器启动成功");
         return driver;
     }
 

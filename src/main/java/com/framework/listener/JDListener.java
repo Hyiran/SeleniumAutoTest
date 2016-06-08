@@ -11,34 +11,34 @@ public class JDListener implements IExecutionListener, ISuiteListener, IInvokedM
 
     public void onExecutionStart() {
         weclome();
-        log.info("=======================================================");
-        log.info("                    测试框架执行开始");
-        log.info("=======================================================");
+        System.out.println("=======================================================");
+        System.out.println("                    测试框架执行开始");
+        System.out.println("=======================================================");
     }
 
     public void onExecutionFinish() {
-        log.info("=======================================================");
-        log.info("                    测试框架执行结束");
-        log.info("=======================================================");
+        System.out.println("=======================================================");
+        System.out.println("                    测试框架执行结束");
+        System.out.println("=======================================================");
     }
 
     public void onStart(ISuite suite) {
-        log.info("测试套件【" + suite.getName() + "】执行开始");
+        System.out.println("测试套件【" + suite.getName() + "】执行开始");
     }
 
     public void onFinish(ISuite suite) {
-        log.info("测试套件【" + suite.getName() + "】执行结束");
+        System.out.println("测试套件【" + suite.getName() + "】执行结束");
     }
 
     private void weclome() {
-        log.info(String.format("Starting JD Test Framework", new Object[0]));
+        System.out.println(String.format("Starting  Test Framework", new Object[0]));
     }
 
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        log.info("测试方法【" + method.getTestMethod().getMethodName() + "】执行开始");
+        System.out.println("测试方法【" + method.getTestMethod().getMethodName() + "】执行开始");
     }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        log.info("测试方法【" + method.getTestMethod().getMethodName() + "】执行结束");
+        System.out.println("测试方法【" + method.getTestMethod().getMethodName() + "】执行结束");
     }
 }
