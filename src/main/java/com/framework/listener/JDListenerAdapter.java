@@ -1,20 +1,21 @@
 package com.framework.listener;
 
+import com.framework.data.util.ElementBase;
+import com.framework.page.PageBase;
 import com.framework.util.Config;
 import com.framework.util.Constants;
 import com.framework.util.Log;
+import com.framework.webdriver.RunTest;
 import org.apache.log4j.Logger;
-import org.testng.ITestContext;
-import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
+import org.testng.*;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * JD TestFrameWork Listener Adapter
- *
- * @author Nihuaiqing
+ * @author Caijianmin
  */
-public class JDListenerAdapter extends TestListenerAdapter {
+public class JDListenerAdapter extends TestListenerAdapter implements IExecutionListener, ISuiteListener, IInvokedMethodListener {
     public static String locator = null;
     public static String type = null;
     public static Config config = new Config(Constants.config);
@@ -36,31 +37,32 @@ public class JDListenerAdapter extends TestListenerAdapter {
 
     @Override
     public void onTestFailure(ITestResult tr) {
-        boolean USESCREENSHOT = System.getProperty("UseScreenshot","").equalsIgnoreCase("true");
-
-    }
-
-    //封装邮件数据:处理test方法中传入参数，参数值可变的情况
-    private Map<String,List<String>> processData(String methodName,Map<String,List<String>> errorDataMap,String errorValue){
-        Set<String> methodSet = errorDataMap.keySet();
-
-        if (methodSet.contains(methodName)){
-            //测试方法已存在,直接add错误信息
-            List<String> errorValueList = errorDataMap.get(methodName);
-            errorValueList.add(errorValue);
-        }else{
-            List<String> errorValueList = new ArrayList<String>();
-            errorValueList.add(errorValue);
-            errorDataMap.put(methodName,errorValueList);
+        super.onTestFailure(tr);
+        boolean USESCREENSHOT = System.getProperty("UseScreenshot", "").equalsIgnoreCase("true");
+        log.error("=======================================================");
+        log.error("测试方法 【" + tr.getName() + "】 执行失败");
+        String imgName;
+        if (RunTest.getDriver() != null) {
+            log.info("请参考：");
+            if (USESCREENSHOT) {
+                //截图
+                SimpleDateFormat df = new SimpleDateFormat("MMddHHmmss");
+                imgName = tr.getName() + "_" + df.format(new Date());
+                new ElementBase().lightElement(locator, type);
+                PageBase.screenShot(imgName);
+            }
         }
-        return errorDataMap;
+        String errorUrl = RunTest.getDriver().getCurrentUrl();
+        log.error("getCurrentPageURL====================================" + errorUrl);
+
+
     }
 
     @Override
     public void onTestSkipped(ITestResult tr) {
         super.onTestSkipped(tr);
         log.info("=======================================================");
-        log.info("测试方法 【"+tr.getName()+"】 执行跳过");
+        log.info("测试方法 【" + tr.getName() + "】 执行跳过");
         log.info("=======================================================");
     }
 
@@ -68,8 +70,42 @@ public class JDListenerAdapter extends TestListenerAdapter {
     public void onTestSuccess(ITestResult tr) {
         super.onTestSuccess(tr);
         log.info("=======================================================");
-        log.info("测试方法 【"+tr.getName()+"】 执行成功！");
+        log.info("测试方法 【" + tr.getName() + "】 执行成功！");
         log.info("=======================================================");
+    }
+
+
+    public void onExecutionStart() {
+        weclome();
+        log.info("=======================================================");
+        log.info("                    测试框架执行开始");
+        log.info("=======================================================");
+    }
+
+    public void onExecutionFinish() {
+        log.info("=======================================================");
+        log.info("                    测试框架执行结束");
+        log.info("=======================================================");
+    }
+
+    public void onStart(ISuite suite) {
+        log.info("测试套件【" + suite.getName() + "】执行开始");
+    }
+
+    public void onFinish(ISuite suite) {
+        log.info("测试套件【" + suite.getName() + "】执行结束");
+    }
+
+    private void weclome() {
+        log.info(String.format("Starting Test Framework", new Object[0]));
+    }
+
+    public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+        log.info("测试方法【" + method.getTestMethod().getMethodName() + "】执行开始");
+    }
+
+    public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
+        log.info("测试方法【" + method.getTestMethod().getMethodName() + "】执行结束");
     }
 
 }

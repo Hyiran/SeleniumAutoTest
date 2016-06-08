@@ -20,21 +20,19 @@ import java.util.HashMap;
  */
 public abstract class PageBase implements Page {
 
-    WebDriver driver= RunTest.getDriver();
-
     @Override
     public abstract void init(HashMap<String, Object> paramHashMap) ;
 
     /**
      * 截取整个浏览器页面
      */
-    public void screenShot(String name) {
+    public static void screenShot(String name) {
         String path = System.getProperty("user.dir") + "/test-output/screenshot";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdir();
         }
-        File screenShotFile =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File screenShotFile =  ((TakesScreenshot) RunTest.getDriver()).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenShotFile, new File(path + "/" + name + ".jpg"));
         } catch (IOException e) {
@@ -45,7 +43,7 @@ public abstract class PageBase implements Page {
     /**
      * 只接当前屏幕图片
      */
-    public  String takeScreenshot( String name) {
+    public static String takeScreenshot( String name) {
         String path = System.getProperty("user.dir") + "/test-output/screenshot";
         File file = new File(path);
         if (!file.exists()) {

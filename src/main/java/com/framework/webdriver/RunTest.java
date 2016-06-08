@@ -23,7 +23,7 @@ public class RunTest extends DriverBase {
     public static Config config = new Config(Constants.config);
     public static Logger log = Log.getInstance();
     private static DataUtil data = DataUtil.getInstance();
-    public static WebDriver driver = start();
+    private static WebDriver driver = start();
     public static TestHelper helper = new TestHelper();
 
     public static Config getConfig() {
@@ -34,7 +34,7 @@ public class RunTest extends DriverBase {
         return driver;
     }
 
-    @BeforeSuite
+    @BeforeSuite//启动浏览器
     private static WebDriver start() {
         log.info("初始化系统参数配置");
         new InitProperties();//初始化系统配置文件
