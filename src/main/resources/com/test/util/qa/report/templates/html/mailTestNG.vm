@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>testNG</title>
+</head>
+<body style="height:100%; font-style:normal; font-weight:normal; font-family: sans-serif;">
+<div style="width: 800px;height:20px;text-align:left;">
+    #if($htmlData.failedDataList.size()>0)
+        $htmlData.jobName 测试报告_失败
+    #else
+        $htmlData.jobName 测试报告_成功
+    #end
+</div>
+<div id="meta" style="font-size: 1.2em; margin-top:10px;">
+    <br><span class="systemInfo">测试项目: $htmlData.projectName</span>
+    <br><span class="systemInfo">开始时间: $htmlData.startDate </span>
+    <br><span class="systemInfo">持续时间: $htmlData.duration </span>
+    <br><span class="systemInfo">编译地址：<a href="$htmlData.buildUrl">链接</a></span>
+</div>
+
+<table style="border: 1px solid #ddd; border-collapse:collapse; width: 800px;">
+
+    <thead style="background-color: #f9f9f9;">
+    <tr>
+        <th style="border: 1px solid #ddd;padding:6px;">统计结果</th>
+        <th style="border: 1px solid #ddd;">持续时间</th>
+        <th style="border: 1px solid #ddd;">通过数</th>
+        <th style="border: 1px solid #ddd;">跳过数</th>
+        <th style="border: 1px solid #ddd;">失败数</th>
+        <th style="border: 1px solid #ddd;">通过率</th>
+    </tr>
+    </thead>
+
+    <tbody style="border-top: 2px solid #ddd;">
+    <tr style="background-color:#dff0d8">
+        <td style="border: 1px solid #ddd; text-align:center;">TestNG_TestCase维度_统计 </td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.caseMap.duration</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.caseMap.passed</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.caseMap.skiped</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.caseMap.failed</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.caseMap.noRepRate %</td>
+    </tr>
+    <tr style="background-color:#dff0d8">
+        <td style="border: 1px solid #ddd; text-align:center;">TestNG_TestStep维度_统计</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.stepMap.duration</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.stepMap.passed</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.stepMap.skiped</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.stepMap.failed</td>
+        <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;">$htmlData.stepMap.allRate %</td>
+    </tr>
+    </tbody>
+</table>
+
+<h4 style="color:red">1:失败TEST汇总（按照步骤进行统计）</h4>
+<table style="border: 1px solid #ddd; border-collapse:collapse; width: 800px;">
+    <thead style="background-color: #f9f9f9;">
+    <tr>
+        <th style="border: 1px solid #ddd;padding:6px;">用例名</th>
+        <th style="border: 1px solid #ddd;">错误描述</th>
+        <th style="border: 1px solid #ddd;">错误链接</th>
+        #if($htmlData.isUseScreenshot == true)
+            <th style="border: 1px solid #ddd;">截图</th>
+        #else
+            <th style="display:none; border: 1px solid #ddd;">截图</th>
+        #end
+    </tr>
+    </thead>
+
+    <tbody style="border-top: 2px solid #ddd;">
+        #foreach($failedItem in $htmlData.failedDataList)
+        <tr style="background-color:#dff0d8">
+            <td style="border: 1px solid #ddd; text-align:center;">
+                <span style="display:inline-block; width:200px; font-size:0.9em; vertical-align:middle;">$failedItem.methodName</span>
+            </td>
+            <td style="border: 1px solid #ddd; text-align:center;">
+                    <span style="display:inline-block; width:200px; font-size:0.8em; vertical-align:middle; word-break:break-all;">
+                        #if($!failedItem.errorDesc)
+                        $failedItem.errorDesc
+                        #end
+                    </span>
+            </td>
+            <td style="border: 1px solid #ddd; text-align:center; color: #3c763d;"><a href="$failedItem.errorUrl" style="font-size:0.8em;">错误页面链接</a></td>
+            #if($htmlData.isUseScreenshot == true)
+                <td style="border: 1px solid #ddd; text-align:center;">
+                    <a href="$failedItem.imgUrl"><img  width="200" height="100" src="$failedItem.imgUrl"></a>
+                </td>
+            #else
+                <td style="display:none; border: 1px solid #ddd; text-align:center;">
+                    <a href="$failedItem.imgUrl" style="display:none"><img  width="200" height="100" src="$failedItem.imgUrl" style="display:none"></a>
+                </td>
+            #end
+
+        </tr>
+        #end
+    </tbody>
+</table>
+<h4 style="color:green;">2:成功TEST汇总</h4>
+<table style="border: 1px solid #ddd; border-collapse:collapse; width: 800px;margin-bottom:20px;">
+    <thead style="background-color: #f9f9f9;">
+    <tr>
+        <th style="border: 1px solid #ddd;padding:6px;">用例名</th>
+        <th style="border: 1px solid #ddd;">用例描述(@Test(description="..."))</th>
+    </tr>
+    </thead>
+    <tbody style="border-top: 2px solid #ddd;">
+        #foreach($passed in $htmlData.successData)
+        <tr style="background-color:#dff0d8">
+            <td style="border: 1px solid #ddd;text-align:left;">
+                    <span style="font-size:0.9em; word-break:break-all;">
+                        $passed.methodName
+                    </span>
+            </td>
+            <td style="border: 1px solid #dddddd; text-align:left;">
+                    <span style="width:200px; font-size:0.9em; word-break:break-all;">
+                        #if($!passed.methodDesc )
+                        $passed.methodDesc
+                        #end
+                    </span>
+            </td>
+        </tr>
+        #end
+    </tbody>
+</table>
+</body>
+</html>

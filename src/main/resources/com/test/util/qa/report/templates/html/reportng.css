@@ -1,0 +1,85 @@
+*                        {padding: 0; margin: 0;}
+a                        {color: #006699; text-decoration:none;}
+a:visited                {color: #003366; text-decoration:none;}
+body                     {font-family: Arial,Tahoma,"宋体"; line-height: 20px; margin: 8px 5px; font-size:12px;}
+h1                       {font-family: Arial,Tahoma,"宋体"; font-weight: bold; font-size: 22px; margin:15px 5px;}
+h2                       {font-family: Arial,Tahoma,"宋体"; font-weight: bold; font-size: 18px; margin-bottom: 0;}
+p                        {font-size: 15px;}
+td                       {font-size: 12px;}
+
+.header                  {font-size: 14px; font-weight: bold; text-align: left;}
+.passed                  {background-color: #44aa44;}
+.skipped                 {background-color: #ffaa00;}
+.failed                  {background-color: #ff4444;}
+.failedConfig            {background-color: #800000; color: #ffffff}
+.skippedConfig           {background-color: #cc6600; color: #ffffff}
+.totalLabel              {font-weight: bold; background-color: #ffffff;}
+
+.suite                   {background-color: #999999; font-weight: bold;}
+.test                    {background-color: #eeeeee; padding-left:30px;}
+.test .passed            {background-color: #88ee88;}
+.test .skipped           {background-color: #ffff77;}
+.test .failed            {background-color: #ff8888;}
+.group                   {background-color: #cccccc; color: #000000; font-weight: bold;}
+.suiteLinks              {float: right; font-weight: normal; vertical-align: middle;}
+.suiteLinks a            {margin-left: 25px; color:#44aa44; font-size:13px;}
+.passRate                {font-weight: bold; text-align: right;}
+.duration                {text-align: right;}
+.thread                  {white-space: nowrap;}
+
+.resultsTable            {border: 0; width: 100%; margin-top: 1.8em; line-height: 1.7em; border-spacing: 0.1em;}
+.resultsTable .method    {width: 18em;}
+.resultsTable .duration  {width: 6em;}
+.resultsTable td         {vertical-align: top; padding: 0 1em;}
+.resultsTable th         {padding: 0 .5em;}
+.number                  {text-align: right;}
+.zero                    {font-weight: normal;}
+.columnHeadings          {font-size: 13px; background-color:#FFF;}
+.columnHeadings th       {font-weight: normal;}
+.bb						 {text-align:right; padding:20px 10px; color: #666666;}
+.totaltime				 {text-align:right; padding:0 10px;}
+
+.configTable             {border: 1px solid #800000; margin-bottom: 1.5em;}
+.skipTable				 {border: 1px solid #ffff77; margin-bottom: 1.5em;}
+.passTable				 {border: 1px solid #44aa44; margin-bottom: 1.5em;}
+.failedTable			 {border: 1px solid #ff4444; margin-bottom: 1.5em;}
+
+#sidebarHeader           {padding: 12px 12px; margin: 0 -5px 12px -5px; }
+#sidebarHeader a         {font-weight:bold;}
+#suites                  {line-height: 23px; border-spacing: 1px; width: 100%; background-color:#999;}
+.tests                   {display: table-row-group;}
+.header.suite            {cursor: pointer; clear: right; height: 24px; margin-top: 1px; background-color: #CF9;}
+div.test                 {margin-top: 0.1em; clear: right; font-size: 1.3em;}
+
+/* The +/- toggle used in the navigation frame. */
+.toggle                  {font-family: Arial,Tahoma,"宋体"; font-weight: bold; padding-left: 2px; padding-right: 5px; color: #777777;}
+.successIndicator        {float: right; font-family: Arial,Tahoma,"宋体"; font-weight: bold; padding-right: 2px; color: #44aa44;}
+.skipIndicator           {float: right; font-family: Arial,Tahoma,"宋体"; font-weight: bold; padding-right: 2px; color: #ffaa00;}
+.failureIndicator        {float: right; font-family: Arial,Tahoma,"宋体"; font-weight: bold; padding-right: 2px; color: #ff4444;}
+
+
+/* These classes are for information about an individual test result. */
+.result                  {font-size: 1.1em; vertical-align: middle;}
+.dependency              {font-family: Arial,Tahoma,"宋体"; font-weight: bold;}
+.arguments               {font-family: Arial,Tahoma,"宋体"; font-weight: bold;}
+.testOutput              {font-family: Arial,Tahoma,"宋体"; color: #666666;}
+.stackTrace              {font-size: 0.9em; line-height: 1.2em; margin-left: 2em; display: none;}
+.stackTrace .stackTrace  {font-size: inherit;}
+.threadname			{font-family: Arial,Tahoma,"宋体"; color: #666666;}
+
+.description             {border-bottom: 1px dotted #006699;}
+
+#meta                    {font-size: 11px; text-align: right; float: right;}
+#systemInfo              {color: #666666;}
+
+/* Reporter log output (individual test ouput is style by "testOutput" above). */
+#log                     {font-family: Arial,Tahoma,"宋体"; font-size:10px; margin-top: 1.8em;}
+
+.overviewTable           {width: 100%; margin-top: 5px; line-height: 20px; background-color: #880;}
+.overviewTable td        {padding: 3px 15px;}
+.overviewTable th        {padding: 0 7px;}
+.overviewTable .duration {width: 80px;}
+.overviewTable .passRate {width: 80px;}
+.overviewTable .number   {width: 70px;}
+.overviewTable tr        {height: 20px;}
+
