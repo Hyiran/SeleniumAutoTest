@@ -1,6 +1,5 @@
 package com.framework.page;
 
-import com.alibaba.fastjson.JSONObject;
 import com.framework.data.util.Element;
 import com.framework.report.ExcelReport;
 import com.framework.webdriver.RunTest;
@@ -23,7 +22,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.Dimension;
-import java.awt.List;
 import java.awt.Rectangle;
 import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;

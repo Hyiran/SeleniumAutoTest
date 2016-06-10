@@ -1,5 +1,6 @@
 package com.framework.browser;
 
+import com.framework.listener.MyEventListener;
 import com.framework.util.Config;
 import com.framework.util.Constants;
 import com.framework.webdriver.DriverBase;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -36,6 +38,11 @@ public class FirefoxBrowser extends DriverBase implements Browser {
         this.driver = new FirefoxDriver(profile);
         this.driver.manage().timeouts().implicitlyWait(Constants.TimeOut, TimeUnit.SECONDS);
         this.driver.manage().window().maximize();
+        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
+        eventFiringWebDriver.register(new MyEventListener());
+        driver=eventFiringWebDriver;
         return this.driver;
+
+
     }
 }
