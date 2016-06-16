@@ -18,7 +18,7 @@
 <div class="totaltime">
   $messages.getString("testDuration"): $utils.formatDuration($utils.getDuration($result.testContext))s
 </div>
-#set ($tempath = "com/jd/pop/qa/report/templates/html/class-results.html.vm")
+#set ($tempath = "com/test/util/qa/report/templates/html/class-results.html.vm")
 #set ($id = 0)
 #if ($failedConfigurations.size() > 0)
   <table class="resultsTable configTable">

@@ -16,12 +16,12 @@ import java.util.*;
 
 public class JUnitXMLReporter extends AbstractReporter {
     private static final String RESULTS_KEY = "results";
-    private static final String TEMPLATES_PATH = "com/jd/qa/pop/report/templates/xml/";
+    private static final String TEMPLATES_PATH = "com/test/util/qa/report/templates/xml/";
     private static final String RESULTS_FILE = "results.xml";
     private static final String REPORT_DIRECTORY = "xml";
 
     public JUnitXMLReporter() {
-        super("com/jd/qa/pop/report/templates/xml/");
+        super("com/test/util/qa/report/templates/xml/");
     }
 
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectoryName) {

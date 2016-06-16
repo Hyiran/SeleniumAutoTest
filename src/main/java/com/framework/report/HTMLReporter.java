@@ -19,7 +19,7 @@ import java.util.Map.Entry;
 public class HTMLReporter extends AbstractReporter {
     private static final String FRAMES_PROPERTY = "Report.frames";
     private static final String ONLY_FAILURES_PROPERTY = "Report.failures-only";
-    private static final String TEMPLATES_PATH = "com/jd/pop/qa/report/templates/html/";
+    private static final String TEMPLATES_PATH = "com/test/util/qa/report/templates/html/";
     private static final String INDEX_FILE = "indexMain.html";
     private static final String SUITES_FILE = "suites.html";
     private static final String OVERVIEW_FILE = "overview.html";
@@ -45,7 +45,7 @@ public class HTMLReporter extends AbstractReporter {
     private static final Comparator<IClass> CLASS_COMPARATOR = new TestClassComparator();
 
     public HTMLReporter() {
-        super("com/jd/pop/qa/report/templates/html/");
+        super("com/test/util/qa/report/templates/html/");
     }
 
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectoryName) {
@@ -82,7 +82,7 @@ public class HTMLReporter extends AbstractReporter {
             throws Exception {
         VelocityContext context = createContext();
         context.put("suites", suites);
-        context.put("onlyReportFailures", Boolean.valueOf(onlyFailures));
+        context.put("onlyReportFailures", onlyFailures);
         generateFile(new File(outputDirectory, isIndex ? "indexMain.html" : "overview.html"), "overview.html.vm", context);
     }
 
@@ -90,7 +90,7 @@ public class HTMLReporter extends AbstractReporter {
             throws Exception {
         VelocityContext context = createContext();
         context.put("suites", suites);
-        context.put("onlyReportFailures", Boolean.valueOf(onlyFailures));
+        context.put("onlyReportFailures", onlyFailures);
         generateFile(new File(outputDirectory, "suites.html"), "suites.html.vm", context);
     }
 
@@ -115,7 +115,7 @@ public class HTMLReporter extends AbstractReporter {
 
                     context.put("passedTests", sortByTestClass(result.getTestContext().getPassedTests()));
 
-                    String fileName = String.format("suite%d_test%d_%s", new Object[]{Integer.valueOf(index), Integer.valueOf(index2), "results.html"});
+                    String fileName = String.format("suite%d_test%d_%s", index, index2, "results.html");
 
                     generateFile(new File(outputDirectory, fileName), "results.html.vm", context);
                 }
@@ -135,7 +135,7 @@ public class HTMLReporter extends AbstractReporter {
                 VelocityContext context = createContext();
                 context.put("suite", suite);
                 context.put("methods", methods);
-                String fileName = String.format("suite%d_%s", new Object[]{Integer.valueOf(index), "chronology.html"});
+                String fileName = String.format("suite%d_%s", index, "chronology.html");
 
                 generateFile(new File(outputDirectory, fileName), "chronology.html.vm", context);
             }
