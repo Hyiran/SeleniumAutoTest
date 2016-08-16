@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by caijianmin on 2016/5/25.
  */
-public class JBrowser extends DriverBase implements Browser {
+public class JIBrowser extends DriverBase implements IBrowser {
     WebDriver driver;
     public static Config config = new Config(Constants.config);
     @Override

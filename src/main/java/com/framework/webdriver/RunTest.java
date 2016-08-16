@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 public class RunTest extends DriverBase {
-    public static Browser browser = null;
+    public static IBrowser IBrowser = null;
     public static Config config = new Config(Constants.config);
     public static Logger log = Log.getInstance();
     private static DataUtil data = DataUtil.getInstance();
@@ -40,15 +40,17 @@ public class RunTest extends DriverBase {
         new InitProperties();//初始化系统配置文件
         if (driver == null) {
             if (Constants.CHROME.equalsIgnoreCase(config.get("BROWSER")))
-                browser = new ChromeBorowser();
+                IBrowser = new ChromeBorowser();
             else if (Constants.FireFox.equalsIgnoreCase(config.get("BROWSER")))
-                browser = new FirefoxBrowser();
+                IBrowser = new FirefoxIBrowser();
             else if (Constants.IE.equalsIgnoreCase(config.get("BROWSER")))
-                browser = new IEBrowser();
+                IBrowser = new IEIBrowser();
             else if (Constants.JBrowser.equalsIgnoreCase(config.get("BROWSER")))
-                browser = new JBrowser();
+                IBrowser = new JIBrowser();
             else if (Constants.PhantomeBrowser.equalsIgnoreCase(config.get("BROWSER")))
-                browser = new PhantomBrowser();
+                IBrowser = new PhantomIBrowser();
+            else if (Constants.AndroidBrowser.equalsIgnoreCase(config.get("BROWSER")))
+                IBrowser = new AndroidBrowser();
             String killBrowser = config.get("killBrowser");
             List<String> browserList = new ArrayList<String>();
             browserList.add(Constants.FirefoxName);
@@ -100,8 +102,8 @@ public class RunTest extends DriverBase {
                 }
             }
         }
-        if ((browser != null) && (config.get("BROWSER") != null)) {
-            driver = browser.start();
+        if ((IBrowser != null) && (config.get("BROWSER") != null)) {
+            driver = IBrowser.start();
         }
         System.out.println("浏览器启动成功");
         return driver;
@@ -158,6 +160,14 @@ public class RunTest extends DriverBase {
                 driver.quit();
             } catch (Exception ex) {
             }
+        }
+    }
+
+    public void delay(int timeMillions){
+        try {
+            Thread.sleep(timeMillions*1000);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

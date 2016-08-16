@@ -14,7 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 /**
  * Created by caijianmin on 2016/5/25.
  */
-public class PhantomBrowser extends DriverBase implements Browser {
+public class PhantomIBrowser extends DriverBase implements IBrowser {
     WebDriver driver;
     public static Logger log = Log.getInstance();
     public static Config config = new Config(Constants.config);

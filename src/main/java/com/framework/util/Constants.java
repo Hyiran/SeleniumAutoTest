@@ -6,6 +6,7 @@ public class Constants {
     public static String FireFox = "firefox";
     public static String JBrowser = "JBrowser";
     public static String PhantomeBrowser = "PhantomeBrowser";
+    public static String AndroidBrowser = "AndroidBrowser";
 
     public static String IEName = "iexplore.exe";
     public static String ChromeName = "chrome.exe";

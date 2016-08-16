@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by caijianmin on 2016/5/25.
  */
-public class ChromeBorowser extends DriverBase implements Browser {
+public class ChromeBorowser extends DriverBase implements IBrowser {
     public static Config config = new Config(Constants.config);
     public static Logger log = Log.getInstance();
     WebDriver driver;

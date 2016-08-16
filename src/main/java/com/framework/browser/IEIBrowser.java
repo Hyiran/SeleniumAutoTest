@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.concurrent.TimeUnit;
 
-public class IEBrowser extends DriverBase implements Browser {
+public class IEIBrowser extends DriverBase implements IBrowser {
     WebDriver driver;
     public static Config config = new Config(Constants.config);
 

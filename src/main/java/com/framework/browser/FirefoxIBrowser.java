@@ -13,7 +13,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-public class FirefoxBrowser extends DriverBase implements Browser {
+public class FirefoxIBrowser extends DriverBase implements IBrowser {
     WebDriver driver;
     public static Config config = new Config(Constants.config);
 

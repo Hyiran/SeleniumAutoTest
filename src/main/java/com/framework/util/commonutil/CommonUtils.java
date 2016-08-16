@@ -35,6 +35,14 @@ public class CommonUtils {
         return osName;
     }
 
+    public static void exec(String command) {
+        try {
+            Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean isWindows() {
         return File.pathSeparator.equals(";");
     }
